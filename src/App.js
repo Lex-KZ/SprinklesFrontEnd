@@ -1,33 +1,42 @@
 import React from 'react'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <nav>
-        <ul>
-          <li>Our cakes</li>
-          <li>About Us</li>
-          <li>Enquiries</li>
-          {/* {
-            if (loggedIn){
-              return(
-                <li>Profile</li>
-                <li>Log Out</li>
-              );
-            } else {
-              <li>Log In</li>
-            }
-          } */}
-        </ul>
-      </nav>
-      <div id="landing-page">
-        <img alt="Sprinkles of Joy cupcake logo" ></img>
-        <h1>Sprinkles of Joy</h1>
-        <button>View Our Creations</button>
+import Navbar from './components/Navbar';
+
+
+
+class App extends React.Component {
+  state = { cakes: null}
+
+  render(){
+    return (
+      <div className="App">
+        <Navbar />
+        <div>
+          {
+            this.state.cakes &&
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </tbody>
+              </table>
+          }
+          
+        </div>
       </div>
-    </div>
-  );
+    )
+  }
 }
 
 export default App;
