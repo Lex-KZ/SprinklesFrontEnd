@@ -33,7 +33,7 @@ class App extends React.Component {
                 <div>
                 {
                   this.state.cakes.map(cake => (
-                    <div>
+                    <div key={cake.id}>
                       <img src={cake.image} alt="cake" width="200"></img>
                       <p>{cake.name}</p>
                       <p>{cake.price}</p>
