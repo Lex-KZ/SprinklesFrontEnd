@@ -1,39 +1,53 @@
 import React from 'react'
 import './App.css';
-
+import { getCakes } from './components/cakes.js'
 import Navbar from './components/Navbar';
 
 
 
 class App extends React.Component {
-  state = { cakes: null}
+  state = { 
+    cakes: null,
+    admin: false
+  }
+
+  componentDidMount() {
+    getCakes()
+      .then(cakes => {
+        console.dir(cakes);
+        return cakes;
+      })
+      .then(cakes => {
+        this.setState({cakes: cakes});
+      })
+  }
 
   render(){
     return (
       <div className="App">
         <Navbar />
-        <div>
+        
           {
-            this.state.cakes &&
-              <table>
-                <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>&nbsp;</th>
-                    <th>&nbsp;</th>
-                    <th>&nbsp;</th>
-                  </tr>
-                </tbody>
-              </table>
+            this.state.cakes ?
+              (
+                <div>
+                {
+                  this.state.cakes.map(cake => (
+                    <div>
+                      <img src={cake.image} alt="cake" width="200"></img>
+                      <p>{cake.name}</p>
+                      <p>{cake.price}</p>
+                    </div>
+                  ))
+                } 
+                </div>
+              ) : (
+                <div>Oops, nothing here!</div>
+              )
+              
           }
           
-        </div>
+       
       </div>
     )
   }
