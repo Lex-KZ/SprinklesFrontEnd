@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, Route} from 'react-router-dom';
 
 function SignInForm({handleSubmit}){
     return(
@@ -12,7 +13,7 @@ function SignInForm({handleSubmit}){
                 <input name="password" type="password"></input>
             </fieldset>
             <input type="submit" value="Sign In"></input>
-            <button>Register</button>
+            <Link to='/register' ><button>Register</button></Link>
         </form>
     )
 }
