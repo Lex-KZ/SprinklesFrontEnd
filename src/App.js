@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import './App.css';
 import { getCakes } from './components/cakes.js'
@@ -41,12 +42,18 @@ class App extends React.Component {
   }
 
   render(){
+    const signedIn = !!this.state.token;
+
     return (
       <div className="App">
+      <Router>
+        <Navbar />
         <main>
-          <Navbar />
-          {
-            !this.state.token &&
+          <Switch>
+          <Route path='/signin' render={() => (
+            signedIn ? (
+              <Redirect to='/' />
+            ) : (
               <form onSubmit={this.handleSubmit}>
                 <fieldset>
                     <label>Email</label>
@@ -59,7 +66,12 @@ class App extends React.Component {
                 <input type="submit" value="Sign In"></input>
                 <button>Register</button>
               </form>
-          }
+            )
+          )} />
+          <Route path='/cakes/:id'>
+            <div>Show Cakes</div>
+          </Route>
+          <Route path='/cakes'>
             {
               this.state.cakes ?
                 (
@@ -77,9 +89,12 @@ class App extends React.Component {
                 ) : (
                   <div>Oops, nothing here!</div>
                 )
-            }
-          
+              }
+          </Route>
+         
+          </Switch> 
         </main>
+        </Router>
       </div>
     )
   }
