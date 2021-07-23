@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 function Navbar(){
     return(
         <nav>
         <ul>
-          <li>Our cakes</li>
+          <li><Link to='/cakes'>Our cakes</Link></li>
           <li>About Us</li>
-          <li>Enquiries</li>
+          <li><Link to='/enquiry'>Enquiries</Link></li>
           {/* {
             if (loggedIn){
                 <li>Profile</li>

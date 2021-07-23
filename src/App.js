@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,18 +7,18 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import './App.css';
-import { getCakes } from './components/cakes.js'
-import Header from './components/Header'
+import { getCakes } from './components/cakes.js';
+import Header from './components/Header';
 import Navbar from './components/Navbar';
-import Cake from './components/Cake'
+import Cake from './components/Cake';
+import { signIn, getToken } from './components/authentication';
 
 
 
 class App extends React.Component {
   state = { 
     cakes: null,
-    token: null,
+    token: getToken()
     // admin: false
   }
 
@@ -39,7 +40,7 @@ class App extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    this.setState({ token: '123' })
+    signIn().then(token => this.setState({ token}))
   }
 
   render(){
