@@ -9,6 +9,7 @@ import {
 import './App.css';
 import { getCakes } from './components/cakes.js'
 import Navbar from './components/Navbar';
+import Cake from './components/Cake'
 
 
 
@@ -68,9 +69,17 @@ class App extends React.Component {
               </form>
             )
           )} />
-          <Route path='/cakes/:id'>
-            <div>Show Cakes</div>
-          </Route>
+          {
+            this.state.cakes && (
+              <Route path='/cakes/:id' render={(props) => {
+                  const id = props.match.params.id;
+                  return (<Cake cake={this.state.cakes.find(p => (p.id == id))} />)
+                } 
+              } />
+            )
+          }
+          
+           
           <Route path='/cakes'>
             {
               this.state.cakes ?
@@ -79,15 +88,15 @@ class App extends React.Component {
                   {
                     this.state.cakes.map(cake => (
                       <div key={cake.id}>
-                        <img src={cake.image} alt="cake" width="200"></img>
-                        <p>{cake.name}</p>
-                        <p>{cake.price}</p>
+                      <Link to={`/cakes/${cake.id}`}><img src={cake.image} alt="cake" width="200"></img></Link>
+                        <p><Link to={`/cakes/${cake.id}`}>{cake.name}</Link></p>
+                        <p>${cake.price}</p>
                       </div>
                     ))
                   } 
                   </div>
                 ) : (
-                  <div>Oops, nothing here!</div>
+                  <div>Loading...</div>
                 )
               }
           </Route>

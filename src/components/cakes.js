@@ -31,7 +31,7 @@ export function getCakes() {
     // return Promise.resolve(cakes);
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (Math.random() >= 0.0) {
+            if (Math.random() > -1) {
                 resolve(cakes);
             } else {
                 reject();
