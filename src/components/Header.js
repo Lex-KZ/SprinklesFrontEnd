@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from '.././sprinkles-logo.png';
+import { Link } from 'react-router-dom';
 
 function Header() {
     return(
         <header>
-            <img src={logo} alt='logo' width='100'/>
-            <h1>Sprinkles of Joy</h1>
+            <Link to='/cakes'><img src={logo} alt='logo' width='100'/></Link>
+            <h1><Link to='/cakes'>Sprinkles of Joy</Link></h1>
         </header> 
     );
 }

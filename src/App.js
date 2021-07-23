@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import Cake from './components/Cake';
 import { signIn, getToken } from './components/authentication';
 import SignInForm from './components/SignInForm';
+import EnquiryForm from './components/EnquiryForm';
 import CakeList from './components/CakeList';
 
 
@@ -51,6 +52,16 @@ class App extends React.Component {
   render(){
     const signedIn = !!this.state.token;
 
+    function requireAuthentication(render) {
+      return function(props) {
+        if (signedIn) {
+          return render(props)
+        } else {
+          return <Redirect to='/signin' />
+        }
+      }
+    }
+
     return (
       <div className="App">
       <Router>
@@ -65,37 +76,17 @@ class App extends React.Component {
               <SignInForm handleSubmit={this.handleSubmit} />
             )
           )} />
-          <Route path='/enquiry' render={() => (
-            this.state.token ? (
-              <form onSubmit={this.handleEnquiry}>
-                <fieldset>
-                  <label>Name</label>
-                  <input name="name" type="text"></input>
-                </fieldset>
-                <fieldset>
-                  <label>Contact Number</label>
-                  <input name="contact-number" type="text"></input>
-                </fieldset>
-                <fieldset>
-                  <label>Topic</label>
-                  <input list="topics" name="topic"></input>
-                  <datalist id="topics">
-                    <option value="Booking" />
-                    <option value="Question" />
-                    <option value="Complaint" />
-                    <option value="Other" />
-                  </datalist>
-                </fieldset>
-                <fieldset>
-                  <label>Message</label>
-                  <textarea name="message" rows="10" cols="50"></textarea>
-                </fieldset>
-                <input type="submit" value="Submit"></input>
-              </form>
-            ) : (
-              <Redirect to='/signin' />
-            )
-          )} />
+
+          {
+            <Route path='/enquiry' render={requireAuthentication(() => (
+              this.state.token ? (
+                <EnquiryForm handleEnquiry={this.handleEnquiry} />
+              ) : (
+                <Redirect to='/signin' />
+              )
+            ))} />
+          }
+
           {
             this.state.cakes && (
               <Route path='/cakes/:id' render={({match}) => {
@@ -105,17 +96,11 @@ class App extends React.Component {
               } />
             )
           }
-          
            
           <Route path='/cakes'>
             {
-              this.state.cakes ?
-                (
-                  <CakeList cakes={this.state.cakes}/>
-                ) : (
-                  <div>Loading...</div>
-                )
-              }
+              <CakeList cakes={this.state.cakes}/>
+            }
           </Route>
          
           </Switch> 
