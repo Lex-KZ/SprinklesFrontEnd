@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import { getCakes } from './components/cakes.js';
@@ -12,6 +11,8 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Cake from './components/Cake';
 import { signIn, getToken } from './components/authentication';
+import SignInForm from './components/SignInForm';
+import CakeList from './components/CakeList';
 
 
 
@@ -57,18 +58,7 @@ class App extends React.Component {
             signedIn ? (
               <Redirect to='/cakes' />
             ) : (
-              <form onSubmit={this.handleSubmit}>
-                <fieldset>
-                    <label>Email</label>
-                    <input name="email" type="text"></input>
-                </fieldset>
-                <fieldset>
-                    <label>Password</label>
-                    <input name="password" type="password"></input>
-                </fieldset>
-                <input type="submit" value="Sign In"></input>
-                <button>Register</button>
-              </form>
+              <SignInForm handleSubmit={this.handleSubmit} />
             )
           )} />
           <Route path='/enquiry' render={() => (
@@ -104,8 +94,8 @@ class App extends React.Component {
           )} />
           {
             this.state.cakes && (
-              <Route path='/cakes/:id' render={(props) => {
-                  const id = props.match.params.id;
+              <Route path='/cakes/:id' render={({match}) => {
+                  const id = match.params.id;
                   return (<Cake cake={this.state.cakes.find(p => (p.id == id))} />)
                 } 
               } />
@@ -117,17 +107,7 @@ class App extends React.Component {
             {
               this.state.cakes ?
                 (
-                  <div>
-                  {
-                    this.state.cakes.map(cake => (
-                      <div key={cake.id}>
-                      <Link to={`/cakes/${cake.id}`}><img src={cake.image} alt="cake" width="200"></img></Link>
-                        <p><Link to={`/cakes/${cake.id}`}>{cake.name}</Link></p>
-                        <p>${cake.price}</p>
-                      </div>
-                    ))
-                  } 
-                  </div>
+                  <CakeList cakes={this.state.cakes}/>
                 ) : (
                   <div>Loading...</div>
                 )

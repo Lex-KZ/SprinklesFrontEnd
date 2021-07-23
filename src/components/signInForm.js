@@ -1,8 +1,8 @@
 import React from 'react';
 
-function signInForm(){
+function SignInForm({handleSubmit}){
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
             <fieldset>
                 <label>Email</label>
                 <input name="email" type="text"></input>
@@ -17,4 +17,4 @@ function signInForm(){
     )
 }
 
-export default signInForm;
+export default SignInForm;
