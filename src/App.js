@@ -39,8 +39,7 @@ class App extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    console.log(event.target);
-    this.setState({ token: '123'})
+    this.setState({ token: '123' })
   }
 
   render(){
@@ -69,6 +68,37 @@ class App extends React.Component {
                 <input type="submit" value="Sign In"></input>
                 <button>Register</button>
               </form>
+            )
+          )} />
+          <Route path='/enquiry' render={() => (
+            this.state.token ? (
+              <form>
+                <fieldset>
+                  <label>Name</label>
+                  <input name="name" type="text"></input>
+                </fieldset>
+                <fieldset>
+                  <label>Contact Number</label>
+                  <input name="contact-number" type="text"></input>
+                </fieldset>
+                <fieldset>
+                  <label>Topic</label>
+                  <input list="topics" name="topic"></input>
+                  <datalist id="topics">
+                    <option value="Booking" />
+                    <option value="Question" />
+                    <option value="Complaint" />
+                    <option value="Other" />
+                  </datalist>
+                </fieldset>
+                <fieldset>
+                  <label>Message</label>
+                  <textarea name="message" rows="10" cols="50"></textarea>
+                </fieldset>
+                <input type="submit" value="Submit"></input>
+              </form>
+            ) : (
+              <Redirect to='/signin' />
             )
           )} />
           {
