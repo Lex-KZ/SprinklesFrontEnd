@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import { getCakes } from './components/cakes.js'
+import Header from './components/Header'
 import Navbar from './components/Navbar';
 import Cake from './components/Cake'
 
@@ -48,12 +49,13 @@ class App extends React.Component {
     return (
       <div className="App">
       <Router>
+        <Header />
         <Navbar />
         <main>
           <Switch>
           <Route path='/signin' render={() => (
             signedIn ? (
-              <Redirect to='/' />
+              <Redirect to='/cakes' />
             ) : (
               <form onSubmit={this.handleSubmit}>
                 <fieldset>
