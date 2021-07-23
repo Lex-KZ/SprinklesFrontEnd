@@ -44,6 +44,10 @@ class App extends React.Component {
     signIn().then(token => this.setState({ token}))
   }
 
+  handleEnquiry(event){
+    event.preventDefault();
+  }
+
   render(){
     const signedIn = !!this.state.token;
 
@@ -63,7 +67,7 @@ class App extends React.Component {
           )} />
           <Route path='/enquiry' render={() => (
             this.state.token ? (
-              <form>
+              <form onSubmit={this.handleEnquiry}>
                 <fieldset>
                   <label>Name</label>
                   <input name="name" type="text"></input>
