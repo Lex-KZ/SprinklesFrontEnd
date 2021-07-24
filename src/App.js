@@ -7,6 +7,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { getCakes } from './components/cakes.js';
+import { getUser } from './components/user';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Cake from './components/Cake';
@@ -16,6 +17,7 @@ import EnquiryForm from './components/EnquiryForm';
 import CakeList from './components/CakeList';
 import RegistrationForm from './components/RegistrationForm';
 import About from './components/About';
+import Profile from './components/Profile';
 
 
 
@@ -23,8 +25,8 @@ class App extends React.Component {
   state = { 
     cakes: null,
     token: getToken(),
-    admin: false
-    // admin: false
+    admin: false,
+    user: null
   }
 
   constructor(props) {
@@ -35,11 +37,18 @@ class App extends React.Component {
   componentDidMount() {
     getCakes()
       .then(cakes => {
-        console.dir(cakes);
         return cakes;
       })
       .then(cakes => {
         this.setState({cakes: cakes});
+      })
+
+    getUser()
+      .then(user => {
+        return user;
+      })
+      .then(user => {
+        this.setState({user: user});
       })
   }
 
@@ -108,14 +117,18 @@ class App extends React.Component {
             )
           }
            
+          <Route path='/userprofile'>
+            {
+              <Profile user={this.state.user}/>
+            }
+          </Route>
+
           <Route path='/cakes'>
             {
               <CakeList cakes={this.state.cakes}/>
             }
           </Route>
 
-        
-         
           </Switch> 
         </main>
         </Router>

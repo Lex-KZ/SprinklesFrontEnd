@@ -36,6 +36,6 @@ export function getCakes() {
             } else {
                 reject();
             }
-        }, 1500);
+        }, 0);
     })
 }
