@@ -78,7 +78,7 @@ class App extends React.Component {
       <div className="App">
       <Router>
         <Header />
-        <Navbar />
+        <Navbar signedIn={signedIn} />
         <main>
           <Switch>
           <Route path='/signin' render={() => (
