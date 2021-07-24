@@ -6,7 +6,7 @@ function Navbar(){
         <nav>
         <ul>
           <li><Link to='/cakes'>Our cakes</Link></li>
-          <li>About Us</li>
+          <li><Link to='/about'>About Us</Link></li>
           <li><Link to='/enquiry'>Enquiries</Link></li>
           {/* {
             if (loggedIn){

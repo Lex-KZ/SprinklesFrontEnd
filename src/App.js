@@ -15,6 +15,7 @@ import SignInForm from './components/SignInForm';
 import EnquiryForm from './components/EnquiryForm';
 import CakeList from './components/CakeList';
 import RegistrationForm from './components/RegistrationForm';
+import About from './components/About';
 
 
 
@@ -81,6 +82,10 @@ class App extends React.Component {
 
           <Route path='/register'>
             <RegistrationForm />
+          </Route>
+
+          <Route path='/about'>
+            <About />
           </Route>
 
           {
