@@ -14,13 +14,15 @@ import { signIn, getToken } from './components/authentication';
 import SignInForm from './components/SignInForm';
 import EnquiryForm from './components/EnquiryForm';
 import CakeList from './components/CakeList';
+import RegistrationForm from './components/RegistrationForm';
 
 
 
 class App extends React.Component {
   state = { 
     cakes: null,
-    token: getToken()
+    token: getToken(),
+    admin: false
     // admin: false
   }
 
@@ -77,6 +79,10 @@ class App extends React.Component {
             )
           )} />
 
+          <Route path='/register'>
+            <RegistrationForm />
+          </Route>
+
           {
             <Route path='/enquiry' render={requireAuthentication(() => (
               this.state.token ? (
@@ -102,6 +108,8 @@ class App extends React.Component {
               <CakeList cakes={this.state.cakes}/>
             }
           </Route>
+
+        
          
           </Switch> 
         </main>
