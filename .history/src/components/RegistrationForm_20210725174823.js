@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useGlobalState } from './stateContext'
 import { useHistory } from 'react-router-dom'
-import { signUp, setToken } from './authentication'
+import { signUp } from './authentication'
 
 function RegistrationForm(){
     const initialFormState = {
 		username: '', 
 		email: '',
-        first_name: '',
-        last_name: '',
-        middle_name: '', 
+        firstName: '',
+        lastName: '',
+        middleName: '', 
 		password: '', 
 		password_confirmation: ''
 	}
@@ -28,14 +28,10 @@ function RegistrationForm(){
     function handleRegister(event) {
 		event.preventDefault()
 		signUp(formState)
-        .then(({username,jwt, admin}) => {
-			console.log(username, jwt, admin);
-            return Promise.resolve(setToken(jwt));
-		//  .then((user) => {
-		 	// dispatch({type: 'setLoggedInUser', data: user.username})
-		 	// history.push('/cakes')
-		})
-        .catch((error) => console.log(error))
+		// .then((user) => {
+		// 	dispatch({type: 'setLoggedInUser', data: user.username})
+		// 	history.push('/cakes')
+		// })
 	}
 
 
@@ -53,15 +49,15 @@ function RegistrationForm(){
             </fieldset>
             <fieldset>
                 <label>First Name&#42;</label>
-                <input name='first_name' type='text' value={formState.firstName} onChange={handleChange}></input>
+                <input name='firstName' type='text' value={formState.firstName} onChange={handleChange}></input>
             </fieldset>
             <fieldset>
                 <label>Last Name&#42;</label>
-                <input name='last_name' type='text' value={formState.lastName} onChange={handleChange}></input>
+                <input name='lastName' type='text' value={formState.lastName} onChange={handleChange}></input>
             </fieldset>
             <fieldset>
                 <label>Middle Name</label>
-                <input name='middle_name' type='text' value={formState.middleName} onChange={handleChange}></input>
+                <input name='middleName' type='text' value={formState.middleName} onChange={handleChange}></input>
             </fieldset>
             <fieldset>
                 <label>Password&#42;</label>

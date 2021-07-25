@@ -2,13 +2,13 @@ import React from 'react';
 import sprinklesAPI from '../config/api';
 
 export async function signUp(data){
-    const response = await sprinklesAPI.post('/api/auth/sign_up', data)
+    const response = await sprinklesAPI.post('/api/sign_up', data)
     return response.data
 }
 
 export async function signIn(data) {
-    const response = await sprinklesAPI.post('/api/auth/sign_in', data)
-    return response.data;
+    const response = await sprinklesAPI.post('/api/sign_in', data)
+    return response.data
     // return Promise.resolve(setToken('123'));
 }
 

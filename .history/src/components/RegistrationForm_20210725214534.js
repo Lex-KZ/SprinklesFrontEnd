@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useGlobalState } from './stateContext'
 import { useHistory } from 'react-router-dom'
-import { signUp, setToken } from './authentication'
+import { signUp } from './authentication'
 
 function RegistrationForm(){
     const initialFormState = {

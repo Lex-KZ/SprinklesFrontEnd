@@ -1,16 +1,13 @@
 import React,{useState} from 'react'
 import {Link, Route} from 'react-router-dom';
-import {useGlobalState} from './stateContext'
-import { signIn, setToken } from './authentication'
 
 function SignInForm({handleSubmit}){
     const initialFormState = {
 		email: '',
-		password: '',
-        admin: ''
+		password: ''
     }
     const [formState, setFormState] = useState(initialFormState)
-	//const {dispatch} = useGlobalState()
+	const {dispatch} = useGlobalState()
 	function handleChange(event) {
 		setFormState({
 			...formState,
@@ -20,13 +17,11 @@ function SignInForm({handleSubmit}){
 	function handleSubmit(event) {
 		event.preventDefault()
 		signIn(formState)
-		.then(({username,jwt, admin}) => {
-			console.log(username, jwt, admin);
-            return Promise.resolve(setToken(jwt));
-            //return Promise.resolve(setAdmin(admin));
-			//dispatch({type: 'setLoggedInUser', data: username})
-			//dispatch({type: 'setToken', data: jwt})
-			//history.push('/')
+		.then(({username,jwt}) => {
+			console.log(username, jwt);
+			dispatch({type: 'setLoggedInUser', data: username})
+			dispatch({type: 'setToken', data: jwt})
+			history.push('/')
 		})
 		.catch((error) => console.log(error))
 	}
@@ -46,4 +41,5 @@ function SignInForm({handleSubmit}){
         </form>
     )
 }
+
 export default SignInForm;

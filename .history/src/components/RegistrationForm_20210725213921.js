@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useGlobalState } from './stateContext'
 import { useHistory } from 'react-router-dom'
-import { signUp, setToken } from './authentication'
+import { signUp } from './authentication'
 
 function RegistrationForm(){
     const initialFormState = {
 		username: '', 
 		email: '',
-        first_name: '',
-        last_name: '',
-        middle_name: '', 
+        firstName: '',
+        lastName: '',
+        middleName: '', 
 		password: '', 
 		password_confirmation: ''
 	}
@@ -28,14 +28,11 @@ function RegistrationForm(){
     function handleRegister(event) {
 		event.preventDefault()
 		signUp(formState)
-        .then(({username,jwt, admin}) => {
-			console.log(username, jwt, admin);
-            return Promise.resolve(setToken(jwt));
+        console.log(formState)
 		//  .then((user) => {
 		 	// dispatch({type: 'setLoggedInUser', data: user.username})
 		 	// history.push('/cakes')
-		})
-        .catch((error) => console.log(error))
+		//})
 	}
 
 

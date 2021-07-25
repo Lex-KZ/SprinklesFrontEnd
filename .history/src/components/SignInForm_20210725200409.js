@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Link, Route} from 'react-router-dom';
 import {useGlobalState} from './stateContext'
-import { signIn, setToken } from './authentication'
+import { signIn } from './authentication'
 
 function SignInForm({handleSubmit}){
     const initialFormState = {
@@ -10,7 +10,7 @@ function SignInForm({handleSubmit}){
         admin: ''
     }
     const [formState, setFormState] = useState(initialFormState)
-	//const {dispatch} = useGlobalState()
+	const {dispatch} = useGlobalState()
 	function handleChange(event) {
 		setFormState({
 			...formState,
@@ -22,8 +22,6 @@ function SignInForm({handleSubmit}){
 		signIn(formState)
 		.then(({username,jwt, admin}) => {
 			console.log(username, jwt, admin);
-            return Promise.resolve(setToken(jwt));
-            //return Promise.resolve(setAdmin(admin));
 			//dispatch({type: 'setLoggedInUser', data: username})
 			//dispatch({type: 'setToken', data: jwt})
 			//history.push('/')

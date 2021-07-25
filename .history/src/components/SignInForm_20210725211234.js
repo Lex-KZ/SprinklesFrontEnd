@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Link, Route} from 'react-router-dom';
 import {useGlobalState} from './stateContext'
-import { signIn, setToken } from './authentication'
+import { signIn } from './authentication'
 
 function SignInForm({handleSubmit}){
     const initialFormState = {
