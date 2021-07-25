@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const sprinklesAPI = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://sprinkles-of-joy-api.herokuapp.com'
 })
 
 export default sprinklesAPI;

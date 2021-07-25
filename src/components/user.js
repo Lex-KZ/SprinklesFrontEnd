@@ -1,3 +1,5 @@
+import sprinklesAPI from "../config/api";
+
 const user = {
     username: 'Example',
     name: 'first-name last-name',
@@ -8,7 +10,8 @@ const user = {
     ]
 }
 
-export function getUser(){
-    console.log(user)
+export async function getUser(){
+    const userResponse = await sprinklesAPI.get('/api/user');
+    console.log(userResponse);
     return Promise.resolve(user);
 }
