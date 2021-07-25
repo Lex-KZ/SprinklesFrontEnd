@@ -43,13 +43,13 @@ class App extends React.Component {
         this.setState({cakes: cakes});
       })
 
-    getUser()
-      .then(user => {
-        return user;
-      })
-      .then(user => {
-        this.setState({user: user});
-      })
+    // getUser()
+    //   .then(user => {
+    //     return user;
+    //   })
+    //   .then(user => {
+    //     this.setState({user: user});
+    //   })
   }
 
   handleSubmit(event){
@@ -69,7 +69,7 @@ class App extends React.Component {
         if (signedIn) {
           return render(props)
         } else {
-          return <Redirect to='/signin' />
+          return <Redirect to='/sign_in' />
         }
       }
     }
@@ -81,7 +81,7 @@ class App extends React.Component {
         <Navbar signedIn={signedIn} />
         <main>
           <Switch>
-          <Route path='/signin' render={() => (
+          <Route path='/sign_in' render={() => (
             signedIn ? (
               <Redirect to='/cakes' />
             ) : (
@@ -89,7 +89,7 @@ class App extends React.Component {
             )
           )} />
 
-          <Route path='/register'>
+          <Route path='/sign_up'>
             <RegistrationForm />
           </Route>
 
@@ -102,7 +102,7 @@ class App extends React.Component {
               this.state.token ? (
                 <EnquiryForm handleEnquiry={this.handleEnquiry} />
               ) : (
-                <Redirect to='/signin' />
+                <Redirect to='/sign_in' />
               )
             ))} />
           }

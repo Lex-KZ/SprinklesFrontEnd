@@ -18,7 +18,7 @@ function Navbar({signedIn}){
               <li><Link to='/cakes'>Our cakes</Link></li>
               <li><Link to='/about'>About Us</Link></li>
               <li><Link to='/enquiry'>Enquiries</Link></li>
-              <li><Link to='/signin'>Sign In</Link></li>
+              <li><Link to='/sign_in'>Sign In</Link></li>
             </ul>
           )
         }

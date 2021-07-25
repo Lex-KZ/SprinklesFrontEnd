@@ -6,6 +6,10 @@ export async function getCakes() {
     return response.data
 }
 
+// export async function createCake(id) {
+
+// }
+
 // export function getCakes() {
 //     // return Promise.resolve(cakes);
 //     return new Promise((resolve, reject) => {

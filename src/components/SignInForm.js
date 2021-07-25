@@ -13,7 +13,7 @@ function SignInForm({handleSubmit}){
                 <input name="password" type="password"></input>
             </fieldset>
             <input type="submit" value="Sign In"></input>
-            <Link to='/register' ><button>Register</button></Link>
+            <Link to='/sign_up' ><button>Register</button></Link>
         </form>
     )
 }

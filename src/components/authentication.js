@@ -1,7 +1,15 @@
 import React from 'react';
+import sprinklesAPI from '../config/api';
 
-export function signIn() {
-    return Promise.resolve(setToken('123'));
+export async function signUp(data){
+    const response = await sprinklesAPI.post('/api/sign_up', data)
+    return response.data
+}
+
+export async function signIn(data) {
+    const response = await sprinklesAPI.post('/api/sign_in', data)
+    return response.data
+    // return Promise.resolve(setToken('123'));
 }
 
 export function signOut() {
