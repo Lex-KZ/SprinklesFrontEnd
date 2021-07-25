@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Link, Route} from 'react-router-dom';
+import {Link, Route, Redirect} from 'react-router-dom';
 import {useGlobalState} from './stateContext'
 import { signIn, setToken } from './authentication'
 
@@ -20,15 +20,26 @@ function SignInForm({handleSubmit}){
 	function handleSubmit(event) {
 		event.preventDefault()
 		signIn(formState)
-		.then(({username,jwt, admin}) => {
+        .then(({username,jwt, admin}) => {
 			console.log(username, jwt, admin);
+            <Redirect to="/api/cakes" />
             return Promise.resolve(setToken(jwt));
             //return Promise.resolve(setAdmin(admin));
 			//dispatch({type: 'setLoggedInUser', data: username})
 			//dispatch({type: 'setToken', data: jwt})
 			//history.push('/')
 		})
-		.catch((error) => console.log(error))
+		.catch((error) => {
+            if (error.response){
+                console.log(error.response.data.error)
+            } else if (error.request) {
+
+                console.log(error.request)
+            } else {
+
+                console.log(error)    
+            }
+	    })
 	}
     
     return(

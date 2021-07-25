@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useGlobalState } from './stateContext'
-import { useHistory } from 'react-router-dom'
+
+import { useHistory, Redirect } from 'react-router-dom'
 import { signUp, setToken } from './authentication'
 
 function RegistrationForm(){
@@ -30,14 +31,24 @@ function RegistrationForm(){
 		signUp(formState)
         .then(({username,jwt, admin}) => {
 			console.log(username, jwt, admin);
+
             return Promise.resolve(setToken(jwt));
+            
+
 		//  .then((user) => {
 		 	// dispatch({type: 'setLoggedInUser', data: user.username})
 		 	// history.push('/cakes')
 		})
-        .catch((error) => console.log(error))
+		.catch((error) => {
+            if (error.response){
+                console.log(error.response.data.error)
+            } else if (error.request) {
+                console.log(error.request)
+            } else {
+                console.log(error)    
+            }
+	    })
 	}
-
 
     return(
         <form onSubmit={handleRegister}>
