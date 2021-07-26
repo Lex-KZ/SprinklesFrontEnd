@@ -20,8 +20,8 @@ function SignInForm({handleSubmit}){
 	function handleSubmit(event) {
 		event.preventDefault()
 		signIn(formState)
-        .then(({username,jwt, admin}) => {
-			console.log(username, jwt, admin);
+        .then(({username,jwt}) => {
+			console.log(username, jwt);
             <Redirect to="/api/cakes" />
             return Promise.resolve(setToken(jwt));
             //return Promise.resolve(setAdmin(admin));
