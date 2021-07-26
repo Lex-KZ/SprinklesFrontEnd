@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useGlobalState } from './stateContext'
+// import { useGlobalState } from './stateContext'
 
-import { useHistory, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { signUp, setToken } from './authentication'
 
 function RegistrationForm(){
@@ -17,7 +17,7 @@ function RegistrationForm(){
 
     const [formState, setFormState] = useState(initialFormState);
     // const {dispatch} = useGlobalState();
-    let history = useHistory();
+    // let history = useHistory();
 
     function handleChange(event) {
 		setFormState({

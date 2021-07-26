@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Cake({ cake }) {
     return(
         <>
-            <img src={cake.image} alt='image of cake'></img>
+            <img src={cake.image} alt='cake'></img>
             <dl>
                 <dd>{cake.name}</dd>
             </dl>
