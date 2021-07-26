@@ -7,7 +7,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { getCakes } from './components/cakes.js';
-import { getUser } from './components/user';
+// import { getUser } from './components/user';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Cake from './components/Cake';

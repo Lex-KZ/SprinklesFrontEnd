@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import sprinklesAPI from '../config/api';
 
 export async function signUp(data){
