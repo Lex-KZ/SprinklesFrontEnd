@@ -1,15 +1,18 @@
 import React,{useState} from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { signIn, setToken } from './authentication';
 
+
+
 function SignInForm({handleSubmit}){
+    const history = useHistory();
     const initialFormState = {
 		email: '',
 		password: '',
         admin: ''
     }
     const [formState, setFormState] = useState(initialFormState)
-	//const {dispatch} = useGlobalState()
+	
 	function handleChange(event) {
 		setFormState({
 			...formState,
@@ -21,12 +24,8 @@ function SignInForm({handleSubmit}){
 		signIn(formState)
         .then(({username,jwt}) => {
 			console.log(username, jwt);
-            <Redirect to="/api/cakes" />
+            history.push("/cakes");
             return Promise.resolve(setToken(jwt));
-            //return Promise.resolve(setAdmin(admin));
-			//dispatch({type: 'setLoggedInUser', data: username})
-			//dispatch({type: 'setToken', data: jwt})
-			//history.push('/')
 		})
 		.catch((error) => {
             if (error.response){
