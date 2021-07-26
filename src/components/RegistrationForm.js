@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
-import { signUp, setToken } from './authentication'
+import { signUp, setToken, setUser } from './authentication'
 
 function RegistrationForm(){
     const history = useHistory();
@@ -26,10 +26,10 @@ function RegistrationForm(){
     function handleRegister(event) {
 		event.preventDefault()
 		signUp(formState)
-        .then(({username,jwt}) => {
-			console.log(username, jwt);
+        .then(({jwt, user_id}) => {
+			console.log(user_id, jwt);
             history.push("/cakes");
-            return Promise.resolve(setToken(jwt));
+            return Promise.resolve(setToken(jwt), setUser(user_id));
 		})
 		.catch((error) => {
             if (error.response){

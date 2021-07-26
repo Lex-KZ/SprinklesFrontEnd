@@ -10,7 +10,7 @@ import { getCakes } from './components/cakes.js';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Cake from './components/Cake';
-import { getToken, setToken } from './components/authentication';
+import { getToken, setToken, setUser, getUserId } from './components/authentication';
 import SignInForm from './components/SignInForm';
 import EnquiryForm from './components/EnquiryForm';
 import CakeList from './components/CakeList';
@@ -18,7 +18,9 @@ import RegistrationForm from './components/RegistrationForm';
 import About from './components/About';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
+import { getUser } from './components/user';
 import LogOut from './components/LogOut';
+
 
 
 class App extends React.Component {
@@ -26,12 +28,18 @@ class App extends React.Component {
     cakes: null,
     token: getToken(),
     admin: false,
-    user: null
+    user: null,
+    user_id: null
   }
 
   setTokenState = (token) => {
     setToken(token);
     this.setState({token: token})
+  }
+  
+  setUserState = (user_id) => {
+    setUser(user_id);
+    this.setState({user_id: user_id})
   }
 
   componentDidMount() {
@@ -42,6 +50,20 @@ class App extends React.Component {
       .then(cakes => {
         this.setState({cakes: cakes});
       })
+    
+      const id = getUserId()
+      getUser(id) 
+        .then(user => {
+          console.log(user)        
+          return user;
+        })
+        .then(user => {
+            this.setState({user: user});
+    })
+  }
+
+  handleEnquiry(event){
+    event.preventDefault();
   }
 
   render(){
