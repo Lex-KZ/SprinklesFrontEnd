@@ -111,7 +111,9 @@ class App extends React.Component {
             this.state.cakes && (
               <Route path='/cakes/:id' render={({match}) => {
                   const id = match.params.id;
-                  return (<Cake cake={this.state.cakes.find(p => (p.id == id))} />)
+                  return (<Cake cake={
+                    this.state.cakes.find(p => (p.id.toString() === id), )
+                    } />)
                 } 
               } />
             )
