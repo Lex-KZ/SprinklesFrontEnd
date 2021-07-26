@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import { signIn} from './authentication';
+import { signIn, setUser } from './authentication';
 
 
 function SignInForm({setTokenState}) { //handleSubmit}){
@@ -21,9 +21,10 @@ function SignInForm({setTokenState}) { //handleSubmit}){
 	function handleSubmit(event) {
 		event.preventDefault()
 		signIn(formState)
-        .then(({username,jwt}) => {
-			console.log(username, jwt);
+        .then(({jwt, user_id}) => {
+			console.log(user_id, jwt);
              setTokenState(jwt)
+             setUser(user_id)
             history.push("/cakes");
 		})
 		.catch((error) => {
