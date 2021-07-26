@@ -7,11 +7,10 @@ import {
   Redirect
 } from "react-router-dom";
 import { getCakes } from './components/cakes.js';
-// import { getUser } from './components/user';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Cake from './components/Cake';
-import { signIn, getToken } from './components/authentication';
+import { getToken, setToken } from './components/authentication';
 import SignInForm from './components/SignInForm';
 import EnquiryForm from './components/EnquiryForm';
 import CakeList from './components/CakeList';
@@ -29,9 +28,9 @@ class App extends React.Component {
     user: null
   }
 
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  setTokenState = (token) => {
+    setToken(token);
+    this.setState({token: token})
   }
 
   componentDidMount() {
@@ -42,19 +41,6 @@ class App extends React.Component {
       .then(cakes => {
         this.setState({cakes: cakes});
       })
-
-    // getUser()
-    //   .then(user => {
-    //     return user;
-    //   })
-    //   .then(user => {
-    //     this.setState({user: user});
-    //   })
-  }
-
-  handleSubmit(event){
-    event.preventDefault();
-    signIn().then(token => this.setState({ token}))
   }
 
   handleEnquiry(event){
@@ -62,11 +48,13 @@ class App extends React.Component {
   }
 
   render(){
-    const signedIn = !!this.state.token;
+    const signedIn = !!this.state.token
 
+    console.log("Initial Token:" + this.state.token)
+    console.log("Signed in:", signedIn)
     function requireAuthentication(render) {
       return function(props) {
-        if (signedIn) {
+        if ( signedIn ) {
           return render(props)
         } else {
           return <Redirect to='/sign_in' />
@@ -85,7 +73,7 @@ class App extends React.Component {
             signedIn ? (
               <Redirect to='/cakes' />
             ) : (
-              <SignInForm handleSubmit={this.handleSubmit} />
+              <SignInForm setTokenState={this.setTokenState} /> //handleSubmit={this.handleSubmit} />
             )
           )} />
 

@@ -8,11 +8,11 @@ export async function signUp(data){
 
 export async function signIn(data) {
     const response = await sprinklesAPI.post('/api/auth/sign_in', data)
+    console.log(response.data);
     return response.data;
-    // return Promise.resolve(setToken('123'));
 }
 
-export function signOut() {
+export async function signOut() {
     return Promise.resolve(removeToken());
 }
 
