@@ -3,7 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import { signIn, setUser } from './authentication';
 
 
-function SignInForm({setTokenState}) { //handleSubmit}){
+function SignInForm({setTokenState}) { 
     const history = useHistory();
     const initialFormState = {
 		email: '',
@@ -22,9 +22,9 @@ function SignInForm({setTokenState}) { //handleSubmit}){
 		event.preventDefault()
 		signIn(formState)
         .then(({jwt, user_id}) => {
-			console.log(user_id, jwt);
-             setTokenState(jwt)
-             setUser(user_id)
+			    console.log(user_id, jwt);
+            setTokenState(jwt)
+            setUser(user_id)
             history.push("/cakes");
 		})
 		.catch((error) => {
