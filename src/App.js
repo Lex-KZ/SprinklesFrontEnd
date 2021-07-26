@@ -18,6 +18,7 @@ import RegistrationForm from './components/RegistrationForm';
 import About from './components/About';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
+import LogOut from './components/LogOut';
 
 
 class App extends React.Component {
@@ -43,15 +44,8 @@ class App extends React.Component {
       })
   }
 
-  handleEnquiry(event){
-    event.preventDefault();
-  }
-
   render(){
     const signedIn = !!this.state.token
-
-    console.log("Initial Token:" + this.state.token)
-    console.log("Signed in:", signedIn)
     function requireAuthentication(render) {
       return function(props) {
         if ( signedIn ) {
@@ -73,12 +67,16 @@ class App extends React.Component {
             signedIn ? (
               <Redirect to='/cakes' />
             ) : (
-              <SignInForm setTokenState={this.setTokenState} /> //handleSubmit={this.handleSubmit} />
+              <SignInForm setTokenState={this.setTokenState} />
             )
           )} />
 
           <Route path='/sign_up'>
             <RegistrationForm />
+          </Route>
+
+          <Route path='/log_out'>
+            <LogOut setTokenState={this.setTokenState} />
           </Route>
 
           <Route path='/about'>

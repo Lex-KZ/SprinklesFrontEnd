@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 function Navbar({signedIn}){
-  console.log(signedIn);
     return(
         <nav>
         {
@@ -12,7 +11,7 @@ function Navbar({signedIn}){
               <li><Link to='/about'>About Us</Link></li>
               <li><Link to='/enquiry'>Enquiries</Link></li>
               <li><Link to='/userprofile'>Profile</Link></li>
-              <li>Sign Out</li>
+              <li><Link to='/log_out'>Sign Out</Link></li>
             </ul>
           ) : (
             <ul>
