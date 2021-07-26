@@ -18,7 +18,7 @@ import CakeList from './components/CakeList';
 import RegistrationForm from './components/RegistrationForm';
 import About from './components/About';
 import Profile from './components/Profile';
-
+import LandingPage from './components/LandingPage';
 
 
 class App extends React.Component {
@@ -118,15 +118,15 @@ class App extends React.Component {
           }
            
           <Route path='/userprofile'>
-            {
               <Profile user={this.state.user}/>
-            }
           </Route>
 
           <Route path='/cakes'>
-            {
               <CakeList cakes={this.state.cakes}/>
-            }
+          </Route>
+
+          <Route path='/'>
+            <LandingPage />
           </Route>
 
           </Switch> 
