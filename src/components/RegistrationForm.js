@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-// import { useGlobalState } from './stateContext'
-
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { signUp, setToken } from './authentication'
 
 function RegistrationForm(){
+    const history = useHistory();
     const initialFormState = {
 		username: '', 
 		email: '',
@@ -16,8 +15,6 @@ function RegistrationForm(){
 	}
 
     const [formState, setFormState] = useState(initialFormState);
-    // const {dispatch} = useGlobalState();
-    // let history = useHistory();
 
     function handleChange(event) {
 		setFormState({
@@ -31,7 +28,7 @@ function RegistrationForm(){
 		signUp(formState)
         .then(({username,jwt}) => {
 			console.log(username, jwt);
-            <Redirect to="/api/cakes" />
+            history.push("/cakes");
             return Promise.resolve(setToken(jwt));
 		})
 		.catch((error) => {
