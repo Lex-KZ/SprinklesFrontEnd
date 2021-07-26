@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 function Navbar({signedIn}){
+  console.log(signedIn);
     return(
         <nav>
         {

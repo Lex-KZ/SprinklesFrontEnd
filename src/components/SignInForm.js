@@ -1,10 +1,9 @@
 import React,{useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import { signIn, setToken } from './authentication';
+import { signIn} from './authentication';
 
 
-
-function SignInForm({handleSubmit}){
+function SignInForm({setTokenState}) { //handleSubmit}){
     const history = useHistory();
     const initialFormState = {
 		email: '',
@@ -24,8 +23,8 @@ function SignInForm({handleSubmit}){
 		signIn(formState)
         .then(({username,jwt}) => {
 			console.log(username, jwt);
+             setTokenState(jwt)
             history.push("/cakes");
-            return Promise.resolve(setToken(jwt));
 		})
 		.catch((error) => {
             if (error.response){
