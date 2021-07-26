@@ -57,7 +57,7 @@ class App extends React.Component {
     }
 
     return (
-      <div className="App">
+      <div className="bg-pink-200">
       <Router>
         <Header />
         <Navbar signedIn={signedIn} />

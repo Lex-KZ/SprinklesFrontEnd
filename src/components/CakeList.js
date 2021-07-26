@@ -5,7 +5,7 @@ function CakeList({cakes}) {
     return(
         cakes ?
             (
-                <div>
+                <div className="grid grid-cols-3">
                 {
                     cakes.map(cake => (
                         <div key={cake.id}>
