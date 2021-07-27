@@ -7,3 +7,8 @@ export async function getUser(id){
     return response.data
 }
 
+export async function deleteUser(id){
+    const response = await sprinklesAPI.delete(`/api/auth/delete/${id}`, { headers: {"Authorization" : `Bearer ` + getToken()}});
+    console.log(`deleteUser` + response)
+    return response.data
+}

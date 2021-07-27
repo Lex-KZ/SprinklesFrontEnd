@@ -12,9 +12,6 @@ function EnquiryForm({handleEnquiry}) {
 	let history = useHistory()
 	const [formState,setFormState] = useState(initialFormState)
 	let {id} = useParams()
-//const {topics} = getTopics
-	//const {dispatch, store} = useGlobalState()
-	//const {enquiries} = store;
 
 	useEffect(() => {
 		if(id) {
@@ -32,13 +29,6 @@ function EnquiryForm({handleEnquiry}) {
 		}
 	},[id])
 
-	// function getLastId() {
-	// 	console.log(enquiries)
-	// 	const ids = enquiries.map(enquiry => enquiry.id)
-	// 	console.log(ids)
-	// 	return Math.max(...ids)
-	// }
-
 	function handleChange(event) {
 		setFormState({
 			...formState,
@@ -51,16 +41,12 @@ function EnquiryForm({handleEnquiry}) {
 		if(id) {
 			updateEnquiry( {id: id, ...formState})
 			.then(() => {
-				//dispatch({type: 'updateEnquiry', data: {id: id, ...formState}})
 				history.push(`/enquiries/${id}`)
 			})
 		}
 		else {
-			// const nextId = getLastId() + 1;
 			createEnquiry({...formState })
 			.then(() => {
-		
-				//dispatch({type: 'addEnquiry', data: enquiry})
 				history.push('/enquiries')
 			})
 			.catch((error) => {

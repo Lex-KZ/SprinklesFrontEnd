@@ -15,7 +15,6 @@ export async function signOut() {
     sessionStorage.clear();
     localStorage.clear()
 return removeToken()
-   // return Promise.resolve(removeToken());
 }
 
 const TOKEN_KEY = 'token'
