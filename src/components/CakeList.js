@@ -5,7 +5,7 @@ function CakeList({cakes}) {
     return(
         cakes ?
             (
-                <div className="flex flex-wrap justify-around">
+                <div data-testid="cake-card" className="flex flex-wrap justify-around">
                 {
                     cakes.map(cake => (
                         <Link to={`/cakes/${cake.id}`}>

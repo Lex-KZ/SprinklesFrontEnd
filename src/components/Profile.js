@@ -1,7 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import { getUser, deleteUser } from './user'
 import { getUserId } from './authentication'
 import { getEnquiries } from './enquiry'
+
 
 
 const Profile = () => {
@@ -56,6 +58,3 @@ const Profile = () => {
 
 export default Profile;
 
-//<Button onClick={handleDelete}>Delete</Button>
-
-{/* <p>Number of enquiries = {enquiries.length}</p> */}

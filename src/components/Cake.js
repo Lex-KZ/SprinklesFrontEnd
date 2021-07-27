@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Cake({ cake }) {
     return(
-        <div className="flex justify-center">
+        <div data-testid="indiv-cake" className="flex justify-center">
             <div className="max-w-lg rounded overflow-hidden shadow-lg my-8 mx-4">
                 <img src={cake.image} alt='cake' className="w-full"></img>
                 <div className="px-6 py-4">

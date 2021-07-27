@@ -42,19 +42,23 @@ function SignInForm({setTokenState}) {
 	}
 
     return(
-        <form onSubmit={handleSubmit}>
-            <fieldset>
-                <label>Email</label>
-                <input name="email" type="email" value={formState.email} onChange={handleChange}></input>
-            </fieldset>
-            <fieldset>
-                <label>Password</label>
-                <input name="password" type="password" value={formState.password} onChange={handleChange}></input>
-                 {errorMessage && (  <p className="error"> {errorMessage} </p>)}
-            </fieldset>
-            <input type="submit" value="Sign In"></input>
-            <Link to='/sign_up' ><button>Register</button></Link>
-        </form>
+        <div className=" flex justify-center w-full pt-4">
+            <form onSubmit={handleSubmit} className="bg-white shadow-md shadow-mt rounded px-8 pt-6 pb-8 mb-4 mt-6">
+                <fieldset className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                    <input name="email" type="email" value={formState.email} data-testid="email" onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></input>
+                </fieldset>
+                <fieldset className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                    <input name="password" type="password" value={formState.password} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></input>
+                    {errorMessage && (  <p className="error"> {errorMessage} </p>)}
+                </fieldset>
+                <div className="flex items-center justify-between">
+                    <input type="submit" value="Sign In" className="bg-purple-400 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></input>
+                    <Link to='/sign_up' ><button className="inline-block align-baseline font-bold text-sm text-purple-400 hover:text-purple-600">Register</button></Link>
+                </div>
+            </form>
+            </div>
     )
 }
 export default SignInForm;
