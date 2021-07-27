@@ -1,6 +1,8 @@
+
 import React, { useEffect, useState } from 'react';
 import { getUser } from './user'
 import { getUserId } from './authentication'
+
 
 const Profile = () => {
     const id = getUserId();
@@ -32,5 +34,3 @@ const Profile = () => {
 }
 
 export default Profile;
-
-//<Button onClick={handleDelete}>Delete</Button>
