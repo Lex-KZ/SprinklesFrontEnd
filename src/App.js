@@ -29,7 +29,8 @@ class App extends React.Component {
     token: getToken(),
     admin: false,
     user: null,
-    user_id: null
+    user_id: null,
+    error: null
   }
 
   setTokenState = (token) => {
@@ -51,15 +52,16 @@ class App extends React.Component {
         this.setState({cakes: cakes});
       })
     
-      const id = getUserId()
-      getUser(id) 
-        .then(user => {
-          console.log(user)        
-          return user;
-        })
-        .then(user => {
-            this.setState({user: user});
+    const id = getUserId()
+    getUser(id) 
+      .then(user => {
+        console.log(user)        
+        return user;
+      })
+      .then(user => {
+          this.setState({user: user});
     })
+
   }
 
   handleEnquiry(event){
