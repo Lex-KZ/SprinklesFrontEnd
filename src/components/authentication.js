@@ -12,7 +12,7 @@ export async function signIn(data) {
 }
 
 export async function signOut() {
-    sessionStorage.clear();
+    localStorage.clear();
     return Promise.resolve(removeToken());
 }
 

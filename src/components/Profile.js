@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { getUser } from './user'
-import { getUserId } from './authentication'
+import React from 'react';
+
 
 function Profile({user}) {
     return(
@@ -19,5 +18,3 @@ function Profile({user}) {
 }
 
 export default Profile;
-
-//<Button onClick={handleDelete}>Delete</Button>
