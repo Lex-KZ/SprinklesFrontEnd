@@ -37,11 +37,7 @@ class App extends React.Component {
     setToken(token);
     this.setState({token: token})
   }
-  
-  setUserState = (user_id) => {
-    setUser(user_id);
-    this.setState({user_id: user_id})
-  }
+
 
   componentDidMount() {
     getCakes()
@@ -51,17 +47,6 @@ class App extends React.Component {
       .then(cakes => {
         this.setState({cakes: cakes});
       })
-    
-    const id = getUserId()
-    getUser(id) 
-      .then(user => {
-        console.log(user)        
-        return user;
-      })
-      .then(user => {
-          this.setState({user: user});
-    })
-
   }
 
   handleEnquiry(event){
@@ -96,7 +81,7 @@ class App extends React.Component {
           )} />
 
           <Route path='/sign_up'>
-            <RegistrationForm />
+            <RegistrationForm setTokenState={this.setTokenState} />
           </Route>
 
           <Route path='/log_out'>
@@ -130,7 +115,7 @@ class App extends React.Component {
           }
            
           <Route path='/userprofile'>
-              <Profile user={this.state.user}/>
+              <Profile />
           </Route>
 
           <Route path='/cakes'>
