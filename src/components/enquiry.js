@@ -10,13 +10,11 @@ export const topics = [
 
 export async function getEnquiries() {
     const response = await sprinklesAPI.get('/api/enquiries', { headers: {"Authorization" : `Bearer ` + getToken()}})
-    console.log(response)
     return response.data
 }
 
 export async function createEnquiry(data) {
     const response = await sprinklesAPI.post('/api/enquiries', data, { headers: {"Authorization" : `Bearer ` + getToken()}})
-    console.log(response.data)
     return response.data
 }
 
@@ -39,34 +37,3 @@ export async function getTopics() {
     const response = await sprinklesAPI.get('/api/topics')
     return response.data
 }
-
-// export async function signUp(data){
-//     const response = await sprinklesAPI.post('/api/auth/sign_up', data)
-//     return response.data
-// }
-
-// export async function signIn(data) {
-//     const response = await sprinklesAPI.post('/api/auth/sign_in', data)
-//     return response.data;
-//     // return Promise.resolve(setToken('123'));
-// }
-
-// export function signOut() {
-//     return Promise.resolve(removeToken());
-// }
-
-// const TOKEN_KEY = 'token'
-
-// export function getToken() {
-//     return localStorage.getItem(TOKEN_KEY);
-// }
-
-// export function setToken(token) {
-//     localStorage.setItem(TOKEN_KEY, token)
-//     return token;
-// }
-
-// function removeToken() {
-//     localStorage.removeItem(TOKEN_KEY);
-//     return true;
-// }
