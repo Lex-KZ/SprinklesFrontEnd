@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from '.././sprinkles-logo.png';
 import {Link} from 'react-router-dom';
-import backgroundImage from '.././caitlyn-de-wild-9I4Oe-atXck-unsplash.jpg'
 
 function LandingPage(){
     return(
