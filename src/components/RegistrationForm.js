@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { signUp, setToken, setUser } from './authentication'
 
-function RegistrationForm(){
+function RegistrationForm({setTokenState}){
     const history = useHistory();
     const initialFormState = {
 		username: '', 
@@ -30,7 +30,8 @@ function RegistrationForm(){
         .then(({jwt, user_id}) => {
 			console.log(user_id, jwt);
             history.push("/cakes");
-            return Promise.resolve(setToken(jwt), setUser(user_id));
+            setTokenState(jwt) 
+            setUser(user_id);
 		})
 		.catch((error) => {
             if (error.response){

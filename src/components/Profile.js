@@ -1,7 +1,23 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
+import { getUser } from './user'
+import { getUserId } from './authentication'
 
 
-function Profile({user}) {
+const Profile = () => {
+    const id = getUserId();
+    const [user , setUser] = useState();
+
+    useEffect(() => {
+        getUser(id) 
+          .then(result => {
+              setUser(result);
+          });
+    }, [id]);
+
+
+
+
     return(
         user ?
             (
