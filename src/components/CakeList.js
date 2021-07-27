@@ -5,7 +5,7 @@ function CakeList({cakes}) {
     return(
         cakes ?
             (
-                <div className="grid grid-cols-3">
+                <div className="flex flex-wrap ">
                 {
                     cakes.map(cake => (
                         <div key={cake.id}>
