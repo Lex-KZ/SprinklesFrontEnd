@@ -79,7 +79,7 @@ class App extends React.Component {
     }
 
     return (
-      <div className="bg-pink-200">
+      <div className="App bg-cover" height="100%">
       <Router>
         <Header />
         <Navbar signedIn={signedIn} />
