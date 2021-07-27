@@ -5,6 +5,7 @@ import { signIn, setUser } from './authentication';
 
 function SignInForm({setTokenState}) { 
     const history = useHistory();
+    const [errorMessage, setErrorMessage] = useState('');
     const initialFormState = {
 		email: '',
 		password: '',
@@ -12,6 +13,7 @@ function SignInForm({setTokenState}) {
     }
     const [formState, setFormState] = useState(initialFormState)
 	
+
 	function handleChange(event) {
 		setFormState({
 			...formState,
@@ -30,16 +32,15 @@ function SignInForm({setTokenState}) {
 		.catch((error) => {
             if (error.response){
                 console.log(error.response.data.error)
+                setErrorMessage(error.response.data.error)
             } else if (error.request) {
-
                 console.log(error.request)
             } else {
-
                 console.log(error)    
             }
 	    })
 	}
-    
+
     return(
         <form onSubmit={handleSubmit}>
             <fieldset>
@@ -49,6 +50,7 @@ function SignInForm({setTokenState}) {
             <fieldset>
                 <label>Password</label>
                 <input name="password" type="password" value={formState.password} onChange={handleChange}></input>
+                 {errorMessage && (  <p className="error"> {errorMessage} </p>)}
             </fieldset>
             <input type="submit" value="Sign In"></input>
             <Link to='/sign_up' ><button>Register</button></Link>
