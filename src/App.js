@@ -54,8 +54,7 @@ class App extends React.Component {
     
     const id = getUserId()
     getUser(id) 
-      .then(user => {
-        console.log(user)        
+      .then(user => {      
         return user;
       })
       .then(user => {

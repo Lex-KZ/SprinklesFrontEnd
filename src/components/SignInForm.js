@@ -24,7 +24,6 @@ function SignInForm({setTokenState}) {
 		event.preventDefault()
 		signIn(formState)
         .then(({jwt, user_id}) => {
-			    console.log(user_id, jwt);
             setTokenState(jwt)
             setUser(user_id)
             history.push("/cakes");

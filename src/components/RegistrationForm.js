@@ -28,7 +28,6 @@ function RegistrationForm(){
         setErrorMessage(null);
 		signUp(formState)
         .then(({jwt, user_id}) => {
-			console.log(user_id, jwt);
             history.push("/cakes");
             return Promise.resolve(setToken(jwt), setUser(user_id));
 		})

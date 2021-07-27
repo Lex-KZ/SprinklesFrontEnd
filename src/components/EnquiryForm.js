@@ -20,7 +20,6 @@ function EnquiryForm({handleEnquiry}) {
 		if(id) {
 			getEnquiry(id)
 			.then((enquiry) => {
-				console.log(enquiry)
 				const topic = topics.find((topic) => topic.name.toLowerCase() === enquiry.topic.toLowerCase())
 				setFormState({
 					name: enquiry.name,
@@ -31,13 +30,6 @@ function EnquiryForm({handleEnquiry}) {
 			})
 		}
 	},[id])
-
-	// function getLastId() {
-	// 	console.log(enquiries)
-	// 	const ids = enquiries.map(enquiry => enquiry.id)
-	// 	console.log(ids)
-	// 	return Math.max(...ids)
-	// }
 
 	function handleChange(event) {
 		setFormState({
@@ -51,16 +43,12 @@ function EnquiryForm({handleEnquiry}) {
 		if(id) {
 			updateEnquiry( {id: id, ...formState})
 			.then(() => {
-				//dispatch({type: 'updateEnquiry', data: {id: id, ...formState}})
 				history.push(`/enquiries/${id}`)
 			})
 		}
 		else {
-			// const nextId = getLastId() + 1;
 			createEnquiry({...formState })
 			.then(() => {
-		
-				//dispatch({type: 'addEnquiry', data: enquiry})
 				history.push('/enquiries')
 			})
 			.catch((error) => {
