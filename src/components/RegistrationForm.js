@@ -15,7 +15,7 @@ function RegistrationForm(){
 	}
 
     const [formState, setFormState] = useState(initialFormState);
-
+    const [errorMessage, setErrorMessage] = useState(null);
     function handleChange(event) {
 		setFormState({
 			...formState,
@@ -24,7 +24,8 @@ function RegistrationForm(){
 	}
 
     function handleRegister(event) {
-		event.preventDefault()
+		event.preventDefault();
+        setErrorMessage(null);
 		signUp(formState)
         .then(({jwt, user_id}) => {
 			console.log(user_id, jwt);
@@ -33,11 +34,12 @@ function RegistrationForm(){
 		})
 		.catch((error) => {
             if (error.response){
-                console.log(error.response.data.error)
+                console.log(error.response)
+                setErrorMessage(error.response)
             } else if (error.request) {
                 console.log(error.request)
             } else {
-                console.log(error.response.data)    
+                console.log(error)    
             }
 	    })
 	}
@@ -45,7 +47,6 @@ function RegistrationForm(){
     return(
         <form onSubmit={handleRegister}>
             <h2>Sign Up</h2>
-            <p>&#42;marks mandatory fields</p>
             <fieldset>
                 <label>Email&#42;</label>
                 <input name='email' type='email' value={formState.email} onChange={handleChange}></input>
@@ -73,6 +74,19 @@ function RegistrationForm(){
             <fieldset>
                 <label>Confirm Password&#42;</label>
                 <input name='password_confirmation' type='password' value={formState.password_confirmation} onChange={handleChange}></input>
+                <p>&#42;marks mandatory fields</p>
+                {errorMessage && (
+                    <div>
+                        {
+                            Object.keys(errorMessage.data).map((key, i) => (
+                                <p key={i}>
+                                <span>{key}</span>
+                                <span>: {errorMessage.data[key]}</span>
+                                </p>
+                            ))
+                        }
+                    </div>
+                )}
             </fieldset>
             <input name='submit' type='submit' value='Sign Up'></input>
         </form>
